@@ -1,0 +1,10 @@
+mapreduce.iml
+.idea
+.DS_Store
+.idea/markdown-navigator/
+src/.DS_Store
+src/main/resources/
+src/test/
+target
+lib
+
