@@ -36,8 +36,8 @@ public class StubDriver {
 
 		setRecordLength(conf, 15);
 		
-		addInputPath(job, new Path(args[1]));
-		setOutputPath(job, new Path(args[2]));
+		addInputPath(job, new Path(args[0]));
+		setOutputPath(job, new Path(args[1]));
 		
 		
 		boolean result = job.waitForCompletion(true);
