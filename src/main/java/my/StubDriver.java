@@ -1,24 +1,29 @@
 package my;
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.JobConf;
-import org.apache.hadoop.mapred.lib.NLineInputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FixedLengthInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+import static org.apache.hadoop.mapreduce.Job.getInstance;
+import static org.apache.hadoop.mapreduce.lib.input.FileInputFormat.addInputPath;
+import static org.apache.hadoop.mapreduce.lib.input.FixedLengthInputFormat.setRecordLength;
+import static org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.setOutputPath;
 
 public class StubDriver {
 
 	public static void main(String[] args) throws Exception {
-		if (args.length != 3) {
+
+		if (args.length != 2) {
 			System.out.printf("Usage: StubDriver <input dir> <output dir>\n");
 			System.exit(-1);
 		}
 		JobConf conf = new JobConf();
-		Job job = new Job(conf, "wordcount");
+		Job job = getInstance(conf);
 		job.setJarByClass(StubDriver.class);
 		
 		job.setMapperClass(StubMapper.class);
@@ -28,13 +33,11 @@ public class StubDriver {
 		job.setOutputValueClass(LongWritable.class);
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(LongWritable.class);
+
+		setRecordLength(conf, 15);
 		
-		// job.setInputFormatClass(FixedLengthInputFormat.class);
-		FixedLengthInputFormat.setRecordLength(conf, 15);
-//		conf.set("textinputformat.record.delimiter", ".");
-		
-		FileInputFormat.addInputPath(job, new Path(args[1]));
-		FileOutputFormat.setOutputPath(job, new Path(args[2]));
+		addInputPath(job, new Path(args[1]));
+		setOutputPath(job, new Path(args[2]));
 		
 		
 		boolean result = job.waitForCompletion(true);
