@@ -1,14 +1,10 @@
 package my;
-import org.apache.hadoop.conf.Configuration;
+
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.FixedLengthInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
 import static org.apache.hadoop.mapreduce.Job.getInstance;
 import static org.apache.hadoop.mapreduce.lib.input.FileInputFormat.addInputPath;
 import static org.apache.hadoop.mapreduce.lib.input.FixedLengthInputFormat.setRecordLength;

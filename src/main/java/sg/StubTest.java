@@ -105,9 +105,9 @@ public class StubTest {
 	public void testMapReduce() throws IOException {
 
 		mapReduceDriver.addInput(new Pair<Object, Text>("1", new Text(
-				"sandeep giri is here-jk ADKKD")));
+				"hiya")));
 		mapReduceDriver.addInput(new Pair<Object, Text>("2", new Text(
-				"teach the map and reduce class is fun here")));
+				"I love travelling!")));
 		List<Pair<Text, LongWritable>> output = mapReduceDriver.run();
 		
 		assertEquals(13, output.size());

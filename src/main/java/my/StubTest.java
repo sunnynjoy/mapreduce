@@ -1,4 +1,5 @@
 package my;
+
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -32,13 +33,15 @@ public class StubTest {
 		/*
 		 * Set up the mapper test harness.
 		 */
-		StubMapper mapper = new StubMapper();
+		final StubMapper mapper = new StubMapper();
 		mapDriver = new MapDriver<Object, Text, Text, LongWritable>();
 		mapDriver.setMapper(mapper);
+
 		/*
 		 * Set up the reducer test harness.
 		 */
-		StubReducer reducer = new StubReducer();
+
+		final StubReducer reducer = new StubReducer();
 		reduceDriver = new ReduceDriver<Text, LongWritable, Text, LongWritable>();
 		reduceDriver.setReducer(reducer);
 
@@ -102,10 +105,10 @@ public class StubTest {
 	public void testMapReduce() throws IOException {
 
 		mapReduceDriver.addInput(new Pair<Object, Text>("1", new Text(
-				"sandeep giri is here")));
+				"hiya")));
 		mapReduceDriver.addInput(new Pair<Object, Text>("2", new Text(
-				"teach the map and reduce class is fun.")));
-		List<Pair<Text, LongWritable>> output = mapReduceDriver.run();
+				"I love travelling!")));
+		final List<Pair<Text, LongWritable>> output = mapReduceDriver.run();
 		assertEquals(11, output.size());
 		for (Pair<Text, LongWritable> p : output) {
 			System.out.println(p.getFirst() + " - " + p.getSecond());
