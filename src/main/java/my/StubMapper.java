@@ -15,9 +15,6 @@ public class StubMapper extends Mapper<Object, Text, Text, LongWritable> {
       String[] words = value.toString().split("[ \t]+");
 	  for(String word:words)
 	  {
-		  System.out.println("ddd");
-		  System.err.println("erorr");
-		  
 		  context.write(new Text(word), new LongWritable(1));
 	  }
   }
