@@ -30,6 +30,7 @@ public class StubDriver {
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(LongWritable.class);
 
+		job.setNumReduceTasks(2);
 		setRecordLength(conf, 15);
 		
 		addInputPath(job, new Path(args[0]));
